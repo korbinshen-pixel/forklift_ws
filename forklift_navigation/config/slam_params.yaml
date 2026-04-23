@@ -1,0 +1,72 @@
+# =============================================================================
+# SLAM Toolbox 在线建图参数配置
+# 适用于：ROS2 Humble + slam_toolbox
+# 模式：在线同步建图（online_sync），适合仿真环境
+# =============================================================================
+
+slam_toolbox:
+  ros__parameters:
+    # ---- 基本配置 ----
+    solver_plugin: solver_plugins::CeresSolver   # 使用Ceres求解器
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    ceres_dogleg_type: TRADITIONAL_DOGLEG
+    ceres_loss_function: None
+
+    # ---- 坐标系配置 ----
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /scan
+    use_map_saver: True
+    mode: mapping                   # mapping 建图模式，localization 定位模式
+
+    # ---- 关键帧间隔（叉车移动较慢，间隔可稍大）----
+    debug_logging: False
+    throttle_scans: 1               # 每隔N帧处理一次
+    transform_publish_period: 0.02  # TF发布周期(s)
+    map_update_interval: 5.0        # 地图更新间隔(s)，叉车建图不需要太频繁
+    resolution: 0.05                # 地图分辨率(m/cell)，与导航一致
+    max_laser_range: 20.0           # 最大激光范围(m)，仓库激光扫描距离
+    minimum_time_interval: 0.5      # 最小处理时间间隔(s)
+    transform_timeout: 0.2
+    tf_buffer_duration: 30.0
+    stack_size_to_use: 40000000    # 求解器栈大小(bytes)
+    enable_interactive_mode: True   # 允许交互模式（调试用）
+
+    # ---- 回环检测 ----
+    use_scan_matching: True
+    use_scan_barycenter: True
+    minimum_travel_distance: 0.5    # 触发回环检测的最小移动距离(m)
+    minimum_travel_heading: 0.5     # 触发回环检测的最小转向角度(rad)
+    scan_buffer_size: 10            # 扫描缓冲区大小
+    scan_buffer_maximum_scan_distance: 10.0  # 缓冲扫描最大距离(m)
+    link_match_minimum_response_fine: 0.1    # 精细匹配最小响应
+    link_scan_maximum_distance: 1.5  # 扫描链接最大距离(m)
+    loop_search_maximum_distance: 3.0  # 回环搜索最大距离(m)
+    do_loop_closing: True           # 启用回环闭合
+    loop_match_minimum_chain_size: 10   # 最小回环链大小
+    loop_match_maximum_variance_coarse: 3.0  # 粗配准最大方差
+    loop_match_minimum_response_coarse: 0.35 # 粗配准最小响应
+    loop_match_minimum_response_fine: 0.45   # 精配准最小响应
+
+    # ---- 相关匹配参数 ----
+    correlation_search_space_dimension: 0.5   # 相关搜索空间尺寸(m)
+    correlation_search_space_resolution: 0.01 # 搜索分辨率(m)
+    correlation_search_space_smear_deviation: 0.1  # 平滑偏差
+
+    # ---- 回环关联参数 ----
+    loop_search_space_dimension: 8.0    # 回环搜索空间(m)
+    loop_search_space_resolution: 0.05  # 回环搜索分辨率(m)
+    loop_search_space_smear_deviation: 0.03
+
+    # ---- 扫描匹配参数 ----
+    distance_variance_penalty: 0.5   # 距离方差惩罚
+    angle_variance_penalty: 1.0      # 角度方差惩罚
+    fine_search_angle_offset: 0.00349  # 精细搜索角度偏移(rad, ~0.2°)
+    coarse_search_angle_offset: 0.349  # 粗搜索角度偏移(rad, ~20°)
+    coarse_angle_resolution: 0.0349    # 粗搜索角度分辨率(rad, ~2°)
+    minimum_angle_penalty: 0.9        # 最小角度惩罚
+    minimum_distance_penalty: 0.5     # 最小距离惩罚
+    use_response_expansion: True       # 使用响应扩展

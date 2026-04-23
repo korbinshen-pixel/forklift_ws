@@ -1,0 +1,5 @@
+[console_scripts]
+fork_controller = forklift_control.fork_controller:main
+forklift_task_manager = forklift_control.forklift_task_manager:main
+manual_controller = forklift_control.manual_controller:main
+

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>forklift_bringup</name>
+  <version>1.0.0</version>
+  <description>
+    叉车仿真系统总启动包。
+    提供一键启动所有模块的 launch 文件和 RViz2 配置。
+    适用于 ROS2 Humble + Gazebo 11.10.2 环境。
+  </description>
+  <maintainer email="forklift@example.com">Forklift Developer</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- 构建工具 -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- 运行时依赖（launch 文件引用的包）-->
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+
+  <!-- 本项目其他子包 -->
+  <exec_depend>forklift_description</exec_depend>
+  <exec_depend>forklift_gazebo</exec_depend>
+  <exec_depend>forklift_navigation</exec_depend>
+  <exec_depend>forklift_perception</exec_depend>
+  <exec_depend>forklift_control</exec_depend>
+
+  <!-- Nav2 导航栈 -->
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>nav2_map_server</exec_depend>
+
+  <!-- 测试依赖 -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<!--
+  pallet/model.sdf
+  标准欧式木质托盘（EUR/EPAL标准）
+  
+  结构组成：
+    - 上层面板（top_deck）：完整平面板
+    - 3根底部纵向垫木（bottom_boards）
+    - 9个支脚（blocks，3x3排列）
+    - 下层底板（bottom_deck）
+  
+  总尺寸：1.2m(X) x 0.8m(Y) x 0.144m(Z)
+  质量：25kg
+  摩擦系数：0.6（与地面）/ 0.5（与货物）
+-->
+<sdf version="1.6">
+  <model name="pallet">
+    <!-- 托盘不是静态的，可以被叉车移动 -->
+    <static>false</static>
+
+    <!-- ==================== 上层面板 ==================== -->
+    <!--
+      上层面板由3块木板组成：
+      - 中央宽板
+      - 两侧窄板
+    -->
+    <link name="base_link">
+      <!-- 上层中央板 -->
+      <visual name="top_center_visual">
+        <pose>0 0 0.139 0 0 0</pose>
+        <geometry>
+          <box><size>1.2 0.16 0.022</size></box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Wood</name>
+          </script>
+        </material>
+      </visual>
+      <collision name="top_center_collision">
+        <pose>0 0 0.139 0 0 0</pose>
+        <geometry>
+          <box><size>1.2 0.16 0.022</size></box>
+        </geometry>
+      </collision>
+
+      <!-- 上层左板 -->
+      <visual name="top_left_visual">
+        <pose>0 0.28 0.139 0 0 0</pose>
+        <geometry>
+          <box><size>1.2 0.145 0.022</size></box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Wood</name>
+          </script>
+        </material>
+      </visual>
+      <collision name="top_left_collision">
+        <pose>0 0.28 0.139 0 0 0</pose>
+        <geometry>
+          <box><size>1.2 0.145 0.022</size></box>
+        </geometry>
+      </collision>
+
+      <!-- 上层右板 -->
+      <visual name="top_right_visual">
+        <pose>0 -0.28 0.139 0 0 0</pose>
+        <geometry>
+          <box><size>1.2 0.145 0.022</size></box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Wood</name>
+          </script>
+        </material>
+      </visual>
+      <collision name="top_right_collision">
+        <pose>0 -0.28 0.139 0 0 0</pose>
+        <geometry>
+          <box><size>1.2 0.145 0.022</size></box>
+        </geometry>
+      </collision>
+
+      <!-- ==================== 支脚（9个，3x3排列）==================== -->
+      <!-- 支脚高度：0.095m，截面：0.145m x 0.145m -->
+
+      <!-- 前排支脚 (X=+0.5) -->
+      <visual name="block_front_left_visual">
+        <pose>0.5 0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="block_front_left_collision">
+        <pose>0.5 0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+      </collision>
+
+      <visual name="block_front_center_visual">
+        <pose>0.5 0 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="block_front_center_collision">
+        <pose>0.5 0 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+      </collision>
+
+      <visual name="block_front_right_visual">
+        <pose>0.5 -0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="block_front_right_collision">
+        <pose>0.5 -0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+      </collision>
+
+      <!-- 中排支脚 (X=0) -->
+      <visual name="block_mid_left_visual">
+        <pose>0 0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="block_mid_left_collision">
+        <pose>0 0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+      </collision>
+
+      <visual name="block_mid_center_visual">
+        <pose>0 0 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="block_mid_center_collision">
+        <pose>0 0 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+      </collision>
+
+      <visual name="block_mid_right_visual">
+        <pose>0 -0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="block_mid_right_collision">
+        <pose>0 -0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+      </collision>
+
+      <!-- 后排支脚 (X=-0.5) -->
+      <visual name="block_rear_left_visual">
+        <pose>-0.5 0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="block_rear_left_collision">
+        <pose>-0.5 0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+      </collision>
+
+      <visual name="block_rear_center_visual">
+        <pose>-0.5 0 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="block_rear_center_collision">
+        <pose>-0.5 0 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+      </collision>
+
+      <visual name="block_rear_right_visual">
+        <pose>-0.5 -0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="block_rear_right_collision">
+        <pose>-0.5 -0.28 0.0625 0 0 0</pose>
+        <geometry><box><size>0.145 0.145 0.095</size></box></geometry>
+      </collision>
+
+      <!-- ==================== 底部纵向垫木（3根）==================== -->
+      <!-- 垫木高度：0.022m，宽度：0.1m，沿X轴方向 -->
+
+      <!-- 左侧垫木 -->
+      <visual name="bottom_board_left_visual">
+        <pose>0 0.28 0.011 0 0 0</pose>
+        <geometry><box><size>1.2 0.1 0.022</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="bottom_board_left_collision">
+        <pose>0 0.28 0.011 0 0 0</pose>
+        <geometry><box><size>1.2 0.1 0.022</size></box></geometry>
+      </collision>
+
+      <!-- 中央垫木 -->
+      <visual name="bottom_board_center_visual">
+        <pose>0 0 0.011 0 0 0</pose>
+        <geometry><box><size>1.2 0.1 0.022</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="bottom_board_center_collision">
+        <pose>0 0 0.011 0 0 0</pose>
+        <geometry><box><size>1.2 0.1 0.022</size></box></geometry>
+      </collision>
+
+      <!-- 右侧垫木 -->
+      <visual name="bottom_board_right_visual">
+        <pose>0 -0.28 0.011 0 0 0</pose>
+        <geometry><box><size>1.2 0.1 0.022</size></box></geometry>
+        <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Wood</name></script></material>
+      </visual>
+      <collision name="bottom_board_right_collision">
+        <pose>0 -0.28 0.011 0 0 0</pose>
+        <geometry><box><size>1.2 0.1 0.022</size></box></geometry>
+      </collision>
+
+      <!-- ==================== 物理参数 ==================== -->
+      <inertial>
+        <pose>0 0 0.072 0 0 0</pose>
+        <mass>25.0</mass>
+        <!-- 简化为等效长方体惯量：1.2 x 0.8 x 0.144 -->
+        <inertia>
+          <ixx>0.2197</ixx>   <!-- (1/12)*25*(0.8^2+0.144^2) -->
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.3268</iyy>   <!-- (1/12)*25*(1.2^2+0.144^2) -->
+          <iyz>0.0</iyz>
+          <izz>0.5000</izz>   <!-- (1/12)*25*(1.2^2+0.8^2) -->
+        </inertia>
+      </inertial>
+
+      <!-- 接触面摩擦参数 -->
+      <collision name="top_center_collision">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>1000000.0</kp>
+              <kd>100.0</kd>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,4 @@
+[console_scripts]
+pallet_detector_node = forklift_perception.pallet_detector_node:main
+point_cloud_processor = forklift_perception.point_cloud_processor:main
+

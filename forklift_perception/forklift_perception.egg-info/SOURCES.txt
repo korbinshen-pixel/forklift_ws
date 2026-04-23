@@ -1,0 +1,14 @@
+package.xml
+setup.cfg
+setup.py
+forklift_perception/__init__.py
+forklift_perception/pallet_detector_node.py
+forklift_perception/point_cloud_processor.py
+forklift_perception.egg-info/PKG-INFO
+forklift_perception.egg-info/SOURCES.txt
+forklift_perception.egg-info/dependency_links.txt
+forklift_perception.egg-info/entry_points.txt
+forklift_perception.egg-info/requires.txt
+forklift_perception.egg-info/top_level.txt
+forklift_perception.egg-info/zip-safe
+resource/forklift_perception
